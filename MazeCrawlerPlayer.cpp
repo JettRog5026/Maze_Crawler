@@ -58,14 +58,14 @@ void AMazeCrawlerPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 
 void AMazeCrawlerPlayer::MoveRight(float KeyValue)
 {
-						  //(0,1,0) to change y-axis
+				    //(0,1,0) to change y-axis
 	const FVector Right = Camera->GetRightVector() * MoveForce * KeyValue;
 	Mesh->AddForce(Right);
 }
 
 void AMazeCrawlerPlayer::MoveForward(float KeyValue)
 {
-							//(1,0,0) to change x-axis
+					//(1,0,0) to change x-axis
 	const FVector Forward = Camera->GetForwardVector() * MoveForce * KeyValue;
 	Mesh->AddForce(Forward);
 }
@@ -94,4 +94,60 @@ void AMazeCrawlerPlayer::floorDetection(UPrimitiveComponent* HitComponent, AActo
 	{
 		JumpCount = 0;
 	}
+}
+
+// Getters
+TArray<FString> APlayerCharacter::GetInventory() const
+{
+    return Inventory;
+}
+
+float APlayerCharacter::GetHealth() const
+{
+    return Health;
+}
+
+float APlayerCharacter::GetMoney() const
+{
+    return Money;
+}
+
+// Setters
+void APlayerCharacter::SetInventory(TArray<FString> NewInventory)
+{
+    Inventory = NewInventory;
+}
+
+void APlayerCharacter::SetHealth(float NewHealth)
+{
+    Health = NewHealth;
+}
+
+void APlayerCharacter::SetMoney(float NewMoney)
+{
+    Money = NewMoney;
+}
+
+// Add to inventory
+void APlayerCharacter::AddToInventory(FString Item)
+{
+    Inventory.Add(Item);
+}
+
+// Remove from inventory
+void APlayerCharacter::RemoveFromInventory(FString Item)
+{
+    Inventory.Remove(Item);
+}
+
+// Modify health
+void APlayerCharacter::ModifyHealth(float Amount)
+{
+    Health += Amount;
+}
+
+// Modify money
+void APlayerCharacter::ModifyMoney(float Amount)
+{
+    Money += Amount;
 }
