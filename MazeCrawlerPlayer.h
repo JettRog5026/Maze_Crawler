@@ -38,6 +38,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)\
 		int32 MaxJumps = 1;
 
+	// Player Inventory
+	TArray<FString> Inventory;
+
+	// Player Health
+	float Health;
+
+	// Player Money
+	float Money;
 
 public:	
 
@@ -56,6 +64,23 @@ private:
 		UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 	int32 JumpCount = 0;
+
+	// Getters
+	TArray<FString> GetInventory() const;
+	float GetHealth() const;
+	float GetMoney() const;
+
+	// Setters
+	void SetInventory(TArray<FString> NewInventory);
+	void SetHealth(float NewHealth);
+	void SetMoney(float NewMoney);
+
+	// Methods to modify inventory, health, and money
+	void AddToInventory(FString Item);
+	void RemoveFromInventory(FString Item);
+	void ModifyHealth(float Amount);
+	void ModifyMoney(float Amount);
+
 
 
 };
